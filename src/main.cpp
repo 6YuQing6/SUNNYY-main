@@ -147,23 +147,23 @@ void autonomous(void) {
 // Chassis.drive_distance(10);
 // adding comment here
 
-#if MANUAL
-  manualAutonomous();
-#else
-  #if Alliance
-    #if Closeside
-    CloseSideAuton();
-    #else
-    FarsideAuton();
-    #endif
-  #else
-    #if Closeside
-    CloseSideAutonBlue();
-    #else
-    FarsideAutonBlue();
-    #endif
-  #endif
-#endif
+// #if MANUAL
+//   manualAutonomous();
+// #else
+//   #if Alliance
+//     #if Closeside
+//     CloseSideAuton();
+//     #else
+//     FarsideAuton();
+//     #endif
+//   #else
+//     #if Closeside
+//     CloseSideAutonBlue();
+//     #else
+//     FarsideAutonBlue();
+//     #endif
+//   #endif
+// #endif
   
   // ..........................................................................
   // Insert autonomous user code here.
