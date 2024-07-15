@@ -53,8 +53,8 @@ smartdrive DriveTrain = smartdrive(LeftDriveSmart, RightDriveSmart, DriveTrainIn
 
 void tuned_constants()
 {
-//  Chassis.set_drive_constants(12, 0.35, 0.08, 7,0);//last tune
-  Chassis.set_drive_constants(12, 0.35, 0.08, 7,0); // drive train (forward/backwards) tune
+//  Chassis.set_drive_constants(12, 0.35, 0.08, 7,0); // last tune
+  Chassis.set_drive_constants(12, 0.8, 0.1, 1,0); // drive train (forward/backwards) tune
   Chassis.set_heading_constants(6, .4, 0, 1, 0); // turning tune
   Chassis.set_turn_constants(12, 0.20, 0.005, 1.25, 15);
   Chassis.set_swing_constants(12, .3, .001, 2, 15);
@@ -66,7 +66,27 @@ void tuned_constants()
 
 //Drive Chassis(LeftDriveSmart,RightDriveSmart,InertialPort, 3.25, 0.6, 360);
 
+void drive_tune() {
+  Chassis.drive_distance(40);
+}
 
+void turn_tune() {
+   Chassis.turn_to_angle(180);
+}
+
+void swing_tune() {
+  Chassis.left_swing_to_angle(180);
+  wait(5, sec);
+  Chassis.right_swing_to_angle(180);
+}
+
+void time_tune() {
+  Chassis.drive_distance(30);
+  Chassis.turn_to_angle(90);
+  Chassis.drive_distance(30);
+  Chassis.left_swing_to_angle(90);
+  Chassis.drive_distance(30);
+}
 
 // motor leftDriveA = motor(PORT9, ratio6_1, true);  
 // motor leftDriveB = motor(PORT10, ratio6_1, true);   
@@ -146,6 +166,8 @@ void autonomous(void) {
 // Chassis.turn_to_angle(360);
 // Chassis.drive_distance(10);
 // adding comment here
+
+swing_tune();
 
 // #if MANUAL
 //   manualAutonomous();
@@ -228,7 +250,7 @@ void usercontrol(void) {
     // toggles the isShooting bool with X
     if(Controller1.ButtonX.pressing()){
       IsShooting = !IsShooting;
-      waitUntil(!Controller1.ButtonX.pressing());
+      waitUntil(!Controller1.ButtonX.pressing()); 
     }
     
     // toggles the Wings with L2
